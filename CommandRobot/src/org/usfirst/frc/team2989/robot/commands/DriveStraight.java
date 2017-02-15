@@ -1,31 +1,32 @@
 package org.usfirst.frc.team2989.robot.commands;
 
+import org.usfirst.frc.team2989.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DriveStraight extends CommandBase {
+public class DriveStraight extends Command {
 	double howLong;
 	int autoLoopCounter = 0;
     public DriveStraight(double seconds) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(driveTrain);
+    	requires(Robot.driveTrain);
     	this.howLong = seconds;
     	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-   	SmartDashboard.putString("Active Command", "Drive Straight");
-   	gyro.reset();
+    	SmartDashboard.putString("Active Command", "Drive Straight");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	driveTrain.driveRobot(1, 0, 0, gyro.getAngle());
+    	Robot.driveTrain.driveRobot(1, 0, 0, Robot.gyro.getAngle());
     	autoLoopCounter++;
     }
 
