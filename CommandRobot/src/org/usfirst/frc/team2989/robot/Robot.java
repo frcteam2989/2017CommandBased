@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2989.robot;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -22,8 +23,9 @@ import org.usfirst.frc.team2989.robot.subsystems.DriveTrain;
  */
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrain exampleSubsystem = new DriveTrain();
-
+	public static DriveTrain driveTrain;
+	public static AnalogGyro gyro;
+	public static OI oi;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -33,10 +35,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
+		driveTrain = new DriveTrain();
+		gyro = new AnalogGyro(RobotMap.ANALOG_PORT);
+		oi  = new OI();
 		chooser.addDefault("Default Auto", new TeleopDriveCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		CommandBase.init();
 	}
 
 	/**

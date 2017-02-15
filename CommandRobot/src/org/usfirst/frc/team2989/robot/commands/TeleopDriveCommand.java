@@ -3,13 +3,16 @@ package org.usfirst.frc.team2989.robot.commands;
 import org.usfirst.frc.team2989.robot.Robot;
 import org.usfirst.frc.team2989.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
  *
  */
-public class TeleopDriveCommand extends CommandBase {
+public class TeleopDriveCommand extends Command {
+	
 	public TeleopDriveCommand() {
 		// Use requires() here to declare subsystem dependencies
-		requires(driveTrain);
+		requires(Robot.driveTrain);
 	}
 
 	// Called just before this Command runs the first time
@@ -20,7 +23,7 @@ public class TeleopDriveCommand extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		driveTrain.driveRobot(oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_X), oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_Y), oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_RIGHT_X), gyro.getAngle());
+		Robot.driveTrain.driveRobot(Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_X), Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_Y), Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_RIGHT_X), Robot.gyro.getAngle());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
