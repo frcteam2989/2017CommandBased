@@ -27,4 +27,6 @@ public class RobotMap {
 	public static int JOYSTICK_RIGHT_Y = 5;
 	public static int ANALOG_PORT = 1;
 	public static int CAMERA_PORT = 3;
+	public static int TALON_LIFT_1 = 6;
+	public static int TALON_LIFT_2 = 7;
 }

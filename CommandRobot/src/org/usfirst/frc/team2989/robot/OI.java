@@ -1,7 +1,11 @@
 package org.usfirst.frc.team2989.robot;
 
+import org.usfirst.frc.team2989.robot.commands.LiftCommand;
+
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,6 +21,7 @@ public class OI {
 	// Button button = new JoystickButton(stick, buttonNumber);
 	Joystick xboxController;
 	CameraServer lifecam;
+	Button aButton = new JoystickButton(xboxController, 2);
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
@@ -34,6 +39,7 @@ public class OI {
 		xboxController  = new Joystick(RobotMap.JOYSTICK_PORT);
 		lifecam = CameraServer.getInstance();
 		lifecam.startAutomaticCapture(RobotMap.CAMERA_PORT);
+		aButton.whileHeld(new LiftCommand());
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

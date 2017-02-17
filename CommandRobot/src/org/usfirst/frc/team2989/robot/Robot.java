@@ -1,18 +1,19 @@
 
 package org.usfirst.frc.team2989.robot;
 
+import org.usfirst.frc.team2989.robot.commands.DriveStraight;
+import org.usfirst.frc.team2989.robot.commands.TeleopDriveCommand;
+import org.usfirst.frc.team2989.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2989.robot.subsystems.LiftMechanism;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2989.robot.commands.CommandBase;
-import org.usfirst.frc.team2989.robot.commands.DriveStraight;
-import org.usfirst.frc.team2989.robot.commands.TeleopDriveCommand;
-import org.usfirst.frc.team2989.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +27,9 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static AnalogGyro gyro;
 	public static OI oi;
+	public static double prefTalonSpeed;
+	public static LiftMechanism liftMechanism;
+	Preferences prefs;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -37,11 +41,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		driveTrain = new DriveTrain();
+		liftMechanism = new LiftMechanism();
 		gyro = new AnalogGyro(RobotMap.ANALOG_PORT);
 		oi  = new OI();
 		chooser.addDefault("Default Auto", new TeleopDriveCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		prefTalonSpeed = prefs.getDouble("Lift mechanism talon speed (-1 to 1)", 1); 
 	}
 
 	/**

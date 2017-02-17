@@ -26,10 +26,10 @@ public class TeleopDriveCommand extends Command {
 	@Override
 	protected void execute() {
 		SmartDashboard.putNumber("Joystick X", Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_X));
-		SmartDashboard.putNumber("Joystick Y", Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_Y));
-		SmartDashboard.putNumber("Joystick Rotation", Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_RIGHT_X));
+		SmartDashboard.putNumber("Joystick Y", Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_RIGHT_X));
+		SmartDashboard.putNumber("Joystick Rotation", Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_Y));
 		SmartDashboard.putNumber("Gyro Value", Robot.gyro.getAngle());
-		Robot.driveTrain.driveRobot(Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_X), Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_Y), Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_RIGHT_X), Robot.gyro.getAngle());
+		Robot.driveTrain.driveRobot(Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_X), Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_RIGHT_X), Robot.oi.getXboxController().getRawAxis(RobotMap.JOYSTICK_LEFT_Y), Robot.gyro.getAngle());
 		Timer.delay(.02);
 	}
 
