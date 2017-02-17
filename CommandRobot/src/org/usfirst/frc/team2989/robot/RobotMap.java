@@ -22,9 +22,9 @@ public class RobotMap {
 	public static int MOTOR_LEFT_REAR = 3;
 	public static int MOTOR_RIGHT_REAR = 4;
 	public static int JOYSTICK_LEFT_X = 0;
-	public static int JOYSTICK_RIGHT_X = 2;
+	public static int JOYSTICK_RIGHT_X = 4;
 	public static int JOYSTICK_LEFT_Y = 1;
-	public static int JOYSTICK_RIGHT_Y = 3;
+	public static int JOYSTICK_RIGHT_Y = 5;
 	public static int ANALOG_PORT = 1;
 	public static int CAMERA_PORT = 3;
 }
