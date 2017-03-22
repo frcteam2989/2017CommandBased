@@ -20,7 +20,7 @@ public class DriveTrain extends Subsystem {
 		setDefaultCommand(new TeleopDriveCommand());
 	}
 	
-	public void driveRobot(double x, double y, double rotation, double angle) {
-		robotDrive.mecanumDrive_Cartesian(x, y, rotation, angle);
+	public void driveRobot(double magnitude, double direction, double rotation) {
+		robotDrive.mecanumDrive_Cartesian(magnitude, direction, rotation);
 	}
 }
