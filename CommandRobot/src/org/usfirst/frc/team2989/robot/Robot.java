@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static AnalogGyro gyro;
 	public static OI oi;
 	public static double prefTalonSpeed;
+	public static double prefAutoLength;
 	public static LiftMechanism liftMechanism;
 	Preferences prefs;
 	Command autonomousCommand;
@@ -44,10 +45,14 @@ public class Robot extends IterativeRobot {
 		liftMechanism = new LiftMechanism();
 		gyro = new AnalogGyro(RobotMap.ANALOG_PORT);
 		oi  = new OI();
-		chooser.addDefault("Default Auto", new TeleopDriveCommand());
+		prefs = Preferences.getInstance();
+		chooser.addDefault("Center", new DriveStraight(50));
+		chooser.addObject("Left", new DriveStraight(88));
+		chooser.addObject("Right", new DriveStraight(88));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		prefTalonSpeed = prefs.getDouble("Lift mechanism talon speed (-1 to 1)", 1); 
+		prefTalonSpeed = prefs.getDouble("talonSpeed", 1); 
+		prefAutoLength = prefs.getDouble("autoLength", 65);
 	}
 
 	/**
@@ -71,7 +76,7 @@ public class Robot extends IterativeRobot {
 	 * chooser code works with the Java SmartDashboard. If you prefer the
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
-	 *
+	 *llllll
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
@@ -79,8 +84,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-		autonomousCommand = new DriveStraight(100);
 		autonomousCommand.start();
+		
+		/*
+		 * Set to 40 when in the middle position
+		 * Set to 65-100 when in side position
+		 */
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

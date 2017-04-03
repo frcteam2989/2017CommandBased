@@ -18,7 +18,7 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	public static int JOYSTICK_PORT = 0;
 	public static int MOTOR_LEFT_FRONT = 5;
-	public static int MOTOR_RIGHT_FRONT = 2;
+	public static int MOTOR_RIGHT_FRONT = 7;
 	public static int MOTOR_LEFT_REAR = 3;
 	public static int MOTOR_RIGHT_REAR = 4;
 	public static int JOYSTICK_LEFT_X = 0;
@@ -26,7 +26,6 @@ public class RobotMap {
 	public static int JOYSTICK_LEFT_Y = 1;
 	public static int JOYSTICK_RIGHT_Y = 5;
 	public static int ANALOG_PORT = 1;
-	public static int CAMERA_PORT = 3;
+	public static int CAMERA_PORT = 0;
 	public static int TALON_LIFT_1 = 6;
-	public static int TALON_LIFT_2 = 7;
 }

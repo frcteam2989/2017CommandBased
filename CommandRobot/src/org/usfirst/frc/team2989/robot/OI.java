@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2989.robot;
 
+import org.usfirst.frc.team2989.robot.commands.HalfLiftCommand;
 import org.usfirst.frc.team2989.robot.commands.LiftCommand;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -19,9 +21,12 @@ public class OI {
 	// number it is.
 	// Joystick stick = new Joystick(port);
 	// Button button = new JoystickButton(stick, buttonNumber);
-	Joystick xboxController;
+	// Joystick joystick1;
+	// Joystick joystick2;
+	Joystick joystick1;
+	Joystick joystick2;
 	CameraServer lifecam;
-	Button aButton = new JoystickButton(xboxController, 2);
+	Button aButton;
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
@@ -29,17 +34,25 @@ public class OI {
 	
 	
 	public Joystick getXboxController() {
-		return xboxController;
+		return joystick1;
+	}
+	
+	public Joystick getJoystick2() {
+		return joystick2;
 	}
 
 
 
 	public OI() {
 		super();
-		xboxController  = new Joystick(RobotMap.JOYSTICK_PORT);
+		joystick1  = new Joystick(RobotMap.JOYSTICK_PORT);
+		joystick2 = new Joystick(1);
 		lifecam = CameraServer.getInstance();
-		lifecam.startAutomaticCapture(RobotMap.CAMERA_PORT);
+		lifecam.startAutomaticCapture("cam0", "/dev/video0");
+		Button aButton = new JoystickButton(joystick1, 1);
+		Button bButton = new JoystickButton(joystick1, 2);
 		aButton.whileHeld(new LiftCommand());
+		bButton.whileHeld(new HalfLiftCommand());
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
