@@ -27,6 +27,10 @@ public class OI {
 	Joystick joystick2;
 	CameraServer lifecam;
 	Button aButton;
+	Button bButton;
+	Button xButton;
+	Button yButton;
+	Button zButton;
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
@@ -51,8 +55,16 @@ public class OI {
 		lifecam.startAutomaticCapture("cam0", "/dev/video0");
 		Button aButton = new JoystickButton(joystick1, 1);
 		Button bButton = new JoystickButton(joystick1, 2);
+		Button xButton = new JoystickButton(joystick1, 3);
+		Button yButton = new JoystickButton(joystick1, 4);
+		Button zButton = new JoystickButton(joystick1, 5);
 		aButton.whileHeld(new LiftCommand());
 		bButton.whileHeld(new HalfLiftCommand());
+		xButton.whileHeld(Robot.driveTrain.driveRobot(1, 0, 1, 0));
+		yButton.whileHeld(Robot.driveTrain.driveRobot(0, 1, 1, 0));
+
+
+		
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
