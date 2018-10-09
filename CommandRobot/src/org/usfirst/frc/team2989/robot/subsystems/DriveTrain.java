@@ -26,9 +26,8 @@ public class DriveTrain extends Subsystem {
 		myDrive.setExpiration(0.1);
 	}
 	
-	public void driveRobot(double x, double y, double rotation, double gyro) {
-		myDrive.mecanumDrive_Cartesian(x, y, rotation, gyro);
-		// myDrive.arcadeDrive(-move, rotate);
+	public void driveRobot(double magnitude, double direction, double rotation) {
+		robotDrive.mecanumDrive_Cartesian(magnitude, direction, rotation);
 	}
 
 	//public void driveRobot(GenericHID xboxController, double rawAxis, GenericHID xboxController2, double rawAxis2) {
